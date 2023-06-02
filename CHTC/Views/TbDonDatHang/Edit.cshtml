@@ -1,0 +1,50 @@
+﻿@model CHTC.Models.TbDonDatHang
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_ViewGD.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>TbDonDatHang</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="IDnv" class="control-label"></label>
+                <select asp-for="IDnv" class="form-control" asp-items="ViewBag.IDnv"></select>
+                <span asp-validation-for="IDnv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaDonHang" class="control-label"></label>
+                <input asp-for="MaDonHang" class="form-control" />
+                <span asp-validation-for="MaDonHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayDatHang" class="control-label"></label>
+                <input asp-for="NgayDatHang" class="form-control" />
+                <span asp-validation-for="NgayDatHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDkhachHang" class="control-label"></label>
+                <input asp-for="IDkhachHang" class="form-control" />
+                <span asp-validation-for="IDkhachHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

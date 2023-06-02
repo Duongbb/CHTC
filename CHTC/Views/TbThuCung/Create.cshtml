@@ -1,0 +1,185 @@
+﻿@model CHTC.Models.TbThuCung
+
+@{
+    Layout = "~/Views/Shared/_ViewGD.cshtml";
+}
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Quản lý thú cưng</li>
+            <li class="breadcrumb-item"><a href="#">Tạo mới</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h3 class="tile-title">Thêm thông tin thú cưng </h3>
+                <div class="tile-body">
+                    
+                    <form asp-action="Create" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label> Mã thú cưng:  </label>
+                            <input asp-for="MaThuCung" class="form-control" />
+                            <span asp-validation-for="MaThuCung" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên thú cưng: </label>
+                            <input asp-for="Ten" class="form-control" />
+                            <span asp-validation-for="Ten" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Tuổi(tháng):</label>
+                            <input asp-for="Tuoi" class="form-control" />
+                            <span asp-validation-for="Tuoi" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label> Giới tính: </label>
+                                Đực @Html.RadioButton("GioiTinh","True")
+                                Cái @Html.RadioButton("GioiTinh","False")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Giống </label>
+                            <input asp-for="Giong" class="form-control" />
+                            <span asp-validation-for="Giong" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả: </label>
+                            <input asp-for="MoTa" class="form-control" />
+                            <span asp-validation-for="MoTa" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ảnh thú cưng </label>
+                            <div id="myfileupload">
+                                <input type="file" id="uploadfile" name="imageFile" onchange="readURL(this);" />
+                            </div>
+                            <div id="thumbbox">
+                                <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                                <a class="removeimg" href="javascript:"></a>
+                            </div>
+                            <div id="boxchoice">
+                                <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                                <p style="clear:both"></p>
+                            </div>
+                            @*@Html.LabelFor(model => model.AnhTc, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="imageFile" />
+                                @Html.ValidationMessageFor(model => model.AnhTc, "", new { @class = "text-danger" })
+                            </div>*@
+                            </div>
+                        <div class="form-group">
+                            <label>Mã Loại hàng:</label>
+                            <input asp-for="IDloaiHang" class="form-control" />
+                            <span  asp-validation-for="IDloaiHang" class="text-danger" ></span>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label>Tình trạng:</label>
+                                Đã tiêm @Html.RadioButton("TinhTrang","True")
+                                Chưa tiêm @Html.RadioButton("TinhTrang","False")    
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Giá thị trường: </label>
+                            <input asp-for="Gia" class="form-control" />
+                            <span asp-validation-for="Gia" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label>Trạng thái: </label>
+                                Đã bán @Html.RadioButton("TrangThai","True")
+                                Chưa bán @Html.RadioButton("TrangThai","False")
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                                <a class="btn btn-cancel" asp-action="Index">Hủy bỏ</a>
+                            </div>
+                    </form>
+                    <div class="tile-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@*<h1>Create</h1>
+
+<h4>TbThuCung</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaThuCung" class="control-label"></label>
+                <input asp-for="MaThuCung" class="form-control" />
+                <span asp-validation-for="MaThuCung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ten" class="control-label"></label>
+                <input asp-for="Ten" class="form-control" />
+                <span asp-validation-for="Ten" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tuoi" class="control-label"></label>
+                <input asp-for="Tuoi" class="form-control" />
+                <span asp-validation-for="Tuoi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GioiTinh" class="control-label"></label>
+                <input asp-for="GioiTinh" class="form-control" />
+                <span asp-validation-for="GioiTinh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Giong" class="control-label"></label>
+                <input asp-for="Giong" class="form-control" />
+                <span asp-validation-for="Giong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoTa" class="control-label"></label>
+                <input asp-for="MoTa" class="form-control" />
+                <span asp-validation-for="MoTa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AnhTc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="imageFile" />
+                    @Html.ValidationMessageFor(model => model.AnhTc, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="IDloaiHang" class="control-label"></label>
+                <input asp-for="IDloaiHang" class="form-control" />
+                <span asp-validation-for="IDloaiHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TinhTrang" class="control-label"></label>
+                <input asp-for="TinhTrang" class="form-control" />
+                <span asp-validation-for="TinhTrang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gia" class="control-label"></label>
+                <input asp-for="Gia" class="form-control" />
+                <span asp-validation-for="Gia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrangThai" class="control-label"></label>
+                <input asp-for="TrangThai" class="form-control" />
+                <span asp-validation-for="TrangThai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,94 @@
+﻿@model CHTC.Models.TbChiTietDh
+@* Layout = "~/Views/Shared/_ViewGD.cshtml";*@
+@{
+    ViewData["Title"] = "Edit";
+   
+}
+
+<h1>Edit</h1>
+
+<h4>TbChiTietDh</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="IDdonHang" class="control-label"></label>
+                <select asp-for="IDdonHang" class="form-control" asp-items="ViewBag.IDdonHang"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDsanPham" class="control-label"></label>
+                <select asp-for="IDsanPham" class="form-control" asp-items="@ViewBag.IDsanPham">
+                    <option value="">-- Chọn sản phẩm --</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDtiemChung" class="control-label"></label>
+                <select asp-for="IDtiemChung" class="form-control" asp-items="@ViewBag.IDtiemChung">
+                    <option value="">-- Chọn thuốc --</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDthuCung" class="control-label"></label>
+                <select asp-for="IDthuCung" class="form-control" asp-items="@ViewBag.IDthuCung">
+                    <option value="">-- Chọn thú cưng --</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoLuong" class="control-label"></label>
+                <input asp-for="SoLuong" class="form-control" />
+                <span asp-validation-for="SoLuong" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    $(function () {
+        // Lấy các phần tử cần thiết
+        var soLuong = $("#SoLuong");
+        var giaSanPham = $("#IDsanPham option:selected").data("gia");
+        var giaThuCung = $("#IDthuCung option:selected").data("gia");
+        var giaTiemChung = $("#IDtiemChung option:selected").data("gia");
+        var gia = $("#Gia");
+
+        // Cập nhật giá khi số lượng hoặc sản phẩm/thú cưng/tiêm chủng được chọn thay đổi
+        function capNhatGia() {
+            var tongGiaTien = (soLuong.val() || 0) * giaSanPham + giaThuCung + giaTiemChung;
+            gia.val(tongGiaTien);
+        }
+
+        // Sự kiện khi số lượng hoặc sản phẩm/thú cưng/tiêm chủng được chọn thay đổi
+        soLuong.on("change", capNhatGia);
+        $("#IDsanPham").on("change", function () {
+            giaSanPham = $(this).find(":selected").data("gia");
+            capNhatGia();
+        });
+        $("#IDthuCung").on("change", function () {
+            giaThuCung = $(this).find(":selected").data("gia");
+            capNhatGia();
+        });
+        $("#IDtiemChung").on("change", function () {
+            giaTiemChung = $(this).find(":selected").data("gia");
+            capNhatGia();
+        });
+    });
+</script>

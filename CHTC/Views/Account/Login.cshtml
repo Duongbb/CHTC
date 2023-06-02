@@ -1,0 +1,116 @@
+﻿@model CHTC.Models.TbTaiKhoan
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Đăng nhập quản trị | Website quản trị v2.0</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="~/images/logo.png" />
+                </div>
+        <div class="login100-form validate-form">
+            <span class="login100-form-title">
+                <b>ĐĂNG NHẬP HỆ THỐNG CỬA HÀNG</b>
+            </span>
+        <form  asp-action="Login" asp-controller="Account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="wrap-input100 validate-input">
+                    <input asp-for= "TaiKhoan" class="input100" type="text" placeholder="Tài khoản quản trị" 
+                           id="username">
+                    <span class="focus-input100" asp-validation-for="TaiKhoan"></span>
+                    <span class="symbol-input100">
+                        <i class='bx bx-user'></i>
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input">
+                    <input asp-for="MatKhau" class="input100" type="password" placeholder="Mật khẩu"
+                           id="password-field">
+                    <span class="focus-input100" asp-validation-for="MatKhau"></span>
+                    <span class="symbol-input100">
+                        <i class='bx bx-key'></i>
+                    </span>
+                </div>
+                        @*<div class="form-group">
+                            <label asp-for="Quyen" class="control-label"></label>
+                            <input asp-for="Quyen" class="form-control" />
+                            <span asp-validation-for="Quyen" class="text-danger"></span>
+                        </div>*@
+                        <div class="container-login100-form-btn">
+                            <input type="submit" value="Đăng nhập"  />
+                </div>
+
+
+                        <div class="text-center p-t-70 txt2">
+                            Phần mềm quản lý Cửa hàng PET'DUNO <i class="far fa-copyright" aria-hidden="true"></i>
+                            <script type="text/javascript">document.write(new Date().getFullYear());</script>
+                        </div>
+           
+        </form>
+        </div>
+    </div>
+</div>
+        <!--Javascript-->
+        <script src="~/js/main.js"></script>
+        <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+        <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <script src="~/vendor/bootstrap/js/popper.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/vendor/select2/select2.min.js"></script>
+        <script type="text/javascript">
+            //show - hide mật khẩu
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text"
+                } else {
+                    x.type = "password";
+                }
+            }
+            $(".click-eye").click(function () {
+                $(this).toggleClass("bx-show bx-hide");
+                var input = $($(this).attr("toggle"));
+                if (input.attr("type") == "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            });
+        </script>
+</body>
+
+</html> @*<div class="form-group">
+                <label asp-for="TaiKhoan" class="control-label"></label>
+                <input asp-for="TaiKhoan" class="form-control" />
+                <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatKhau" class="control-label"></label>
+                <input asp-for="MatKhau" class="form-control" />
+                <span asp-validation-for="MatKhau" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dang nhap" class="btn btn-primary" />
+                <span>Vui long @Html.ActionLink("Dang ky","Register","Account") neu chua co tai khoan</span>
+            </div>*@

@@ -1,0 +1,146 @@
+﻿@model CHTC.Models.TbSanPham
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_ViewGD.cshtml";
+}
+
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Quản lý sản phẩm <i>
+            <li class="breadcrumb-item"><a href="#">Sửa đổi</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h3 class="tile-title">Cập nhật thông tin</h3>
+                <div class="tile-body">
+                    <div class="row element-button">
+                    </div>
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
+                        <div class="form-group">
+                            <label> Mã sản phẩm:  </label>
+                            <input asp-for="MaSanPham" class="form-control" />
+                            <span asp-validation-for="MaSanPham" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên sản phẩm: </label>
+                            <input asp-for="TenSanPham" class="form-control" />
+                            <span asp-validation-for="TenSanPham" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả: </label>
+                            <input asp-for="MoTa" class="form-control" />
+                            <span asp-validation-for="MoTa" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Ảnh sản phẩm: </label>
+                            <img src="~/AnhSp/@Model.AnhSp" style="with:80; heigh=45;" />
+
+                            <div id="myfileupload">
+                                <input type="file" id="uploadfile" name="imageFile" onchange="readURL(this);" />
+                            </div>
+                            <div id="thumbbox">
+                                <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                                <a class="removeimg" href="javascript:"></a>
+                            </div>
+                            <div id="boxchoice">
+                                <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                                <p style="clear:both"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Mã Loại hàng:</label>
+                            <input asp-for="IDloaiHang" class="form-control"  />
+                            <span asp-validation-for="IDloaiHang" class="text-danger" ></span>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label>Tình trạng:</label>
+                                Đã bán @Html.RadioButton("TinhTrang","True")
+                                Chưa bán @Html.RadioButton("TinhTrang","False")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Giá thị trường: </label>
+                            <input asp-for="Gia" class="form-control" />
+                            <span asp-validation-for="Gia" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <a class="btn btn-cancel" asp-action="Index">Hủy bỏ</a>
+                        </div>
+                    </form>
+                    <div class="tile-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@*<h1>Edit</h1>
+
+<h4>TbSanPham</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="MaSanPham" class="control-label"></label>
+                <input asp-for="MaSanPham" class="form-control" />
+                <span asp-validation-for="MaSanPham" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenSanPham" class="control-label"></label>
+                <input asp-for="TenSanPham" class="form-control" />
+                <span asp-validation-for="TenSanPham" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoTa" class="control-label"></label>
+                <input asp-for="MoTa" class="form-control" />
+                <span asp-validation-for="MoTa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnhSp" class="control-label"></label>
+                <input asp-for="AnhSp" class="form-control" />
+                <span asp-validation-for="AnhSp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDloaiHang" class="control-label"></label>
+                <input asp-for="IDloaiHang" class="form-control" />
+                <span asp-validation-for="IDloaiHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label>Tình trạng:</label>
+                    Đã bán @Html.RadioButton("TinhTrang","True")
+                    Chưa bán @Html.RadioButton("TinhTrang","False")
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gia" class="control-label"></label>
+                <input asp-for="Gia" class="form-control" />
+                <span asp-validation-for="Gia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

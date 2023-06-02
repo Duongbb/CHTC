@@ -1,0 +1,218 @@
+﻿@model IEnumerable<CHTC.Models.TbThuCung>
+
+@{
+    Layout = "~/Views/Shared/_ViewGD.cshtml";
+}
+    <main class="app-content">
+      <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+          <li class="breadcrumb-item active"><a href="#"><b>Quản lý thú cưng</b></a></li>
+        </ul>
+        <div id="clock"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">
+              <div class="row element-button">
+                <div class="col-sm-2">
+  
+                  <a class="btn btn-add btn-sm" asp-action="Create" title="Thêm"><i class="fas fa-plus"></i>
+                    Tạo mới</a>
+                </div>
+                
+              </div>
+              <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                  <tr>
+                    <th width="10"><input type="checkbox" id="all"></th>
+                                <th>
+                                    <p>Tên thường gọi</p>
+                                </th>
+                                <th>
+                                    <p>Tuổi(tháng)</p>
+                                </th>
+                                <th>
+                                    <p>Giới tính</p>
+                                </th>
+                                <th>
+                                    <p>Ảnh </p>
+                                </th>
+                                <th>
+                                    <p>Giá thị trường </p>
+                                </th>
+                                <th>
+                                    <p>Trạng thái</p>
+                                </th>
+                                <th>
+                                    <p>Tính năng</p>
+                                </th>
+                  </tr>
+                </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.Ten)
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.Tuoi)
+                                </td>
+                                <td>
+                                        @if (item.GioiTinh == true)
+                                        {
+                                        <p>Đực</p>
+
+                                        }
+                                        else
+                                        {
+                                        <p>Cái</p>
+                                        }
+                                </td>
+                                <td>
+                                    <img src=@("~/AnhPet/"+item.AnhTc) width="75px" height="70px" asp-append-version="true" />
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.Gia)
+                                </td>
+                                <td>
+                                        @if (item.TrangThai == true)
+                                        {
+                                            <p class="badge bg-warning">Đã bán</p>
+
+                                        }
+                                        else
+                                        {
+                                            <p class="badge bg-danger">Chưa bán</p>
+                                        }
+                                </td>
+                                <td>
+                                        <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
+                                        <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                </td>
+                            </tr>
+                            }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  
+@*<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaThuCung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tuoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GioiTinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Giong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnhTc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDloaiHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinhTrang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaThuCung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tuoi)
+            </td>
+            <td>
+               @if(item.GioiTinh == true)
+                    {
+                        <p>Đực</p>
+                    
+                     }
+                    else
+                    {
+                        <p>Cái</p>
+                    }
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Giong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                <img src=@("~/AnhPet/"+item.AnhTc) width="80" height="45" asp-append-version="true" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDloaiHang)
+            </td>
+            <td>
+                    @if (item.TinhTrang == true)
+                    {
+                        <p>Đã tiêm</p>
+
+                    }
+                    else
+                    {
+                        <p> Chưa tiêm</p>
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                    @if (item.TrangThai == true)
+                    {
+                        <p>Đã bán</p>
+
+                    }
+                    else
+                    {
+                        <p>Chưa bán</p>
+                    }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

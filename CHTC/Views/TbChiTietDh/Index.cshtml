@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CHTC.Models.TbChiTietDh>
+@*Layout = "~/Views/Shared/_ViewGD.cshtml";*@
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+<h1>Chi tiết đơn hàng @ViewBag.MaDonHang</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDdonHangNavigation.MaDonHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDsanPhamNavigation.TenSanPham)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDtiemchungNavigation.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDthuCungNavigation.Ten)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDdonHangNavigation.MaDonHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDsanPhamNavigation.TenSanPham)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDtiemchungNavigation.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDthuCungNavigation.Ten)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

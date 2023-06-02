@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TbDonDatHang>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ViewGD.cshtml";
+}
+
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item active"><a href="#"><b>Quản lý đơn hàng</b></a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="row element-button">
+                        <div class="col-sm-2">
+
+                            <a class="btn btn-add btn-sm" asp-action="Create" title="Thêm">
+                                <i class="fas fa-plus"></i>
+                                Tạo mới
+                            </a>
+                        </div>
+
+                    </div>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>IDnv</th>
+                                <th>MaDonHang</th>
+                                <th>NgayDatHang</th>
+                                <th>IDkhachHang</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tbDonDatHang in Model)
+                            {
+                                <tr>
+                                    <td>@tbDonDatHang.IDnv</td>
+                                    <td><a href="@Url.Action("ChiTietDh", new { maDonHang = tbDonDatHang.MaDonHang })">@tbDonDatHang.MaDonHang</a></td>
+                                    <td>@((tbDonDatHang.NgayDatHang ?? DateTime.MinValue).ToString("dd/MM/yyyy"))</td>
+                                    <td>@tbDonDatHang.IDkhachHang</td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@tbDonDatHang.ID">Edit</a>
+                                        <a class="btn btn-warning" asp-action="Details" asp-route-id="@tbDonDatHang.ID">Details</a>
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@tbDonDatHang.ID">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@*<h2>TbDonDatHang</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>IDnv</th>
+            <th>MaDonHang</th>
+            <th>NgayDatHang</th>
+            <th>IDkhachHang</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tbDonDatHang in Model)
+        {
+            <tr>
+                <td>@tbDonDatHang.ID</td>
+                <td>@tbDonDatHang.IDnv</td>
+                <td><a href="@Url.Action("ChiTietDh", new { maDonHang = tbDonDatHang.MaDonHang })">@tbDonDatHang.MaDonHang</a></td>
+                <td>@tbDonDatHang.NgayDatHang</td>
+                <td>@tbDonDatHang.IDkhachHang</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>*@
